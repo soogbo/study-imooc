@@ -1,4 +1,4 @@
-package shisp.rocketmq.mq.productconsumer;
+package shisp.rocketmq.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,11 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
-import shisp.rocketmq.GroupTopicTagEnum;
+
 import shisp.rocketmq.RocketMQMessageService;
+import shisp.utils.GroupTopicTagEnum;
 
 /**
- * 催记mqProducer
+ * mqProducer
  * Created by shisp on 2017年11月7日.
  */
 @Service

@@ -1,4 +1,4 @@
-package shisp.rocketmq.mq.productconsumer;
+package shisp.rocketmq.controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,6 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import shisp.rocketmq.service.SubmitTestMqProducer;
+import shisp.utils.ServiceException;
+
+/**
+ * 页面调用发送mq测试Controller
+ * Created by shisp on 2017年11月24日.
+ */
 @RestController
 @RequestMapping("/testMq")
 public class ShispTestMqController {
@@ -23,10 +30,12 @@ public class ShispTestMqController {
         
         try {
             submitTestMqProducer.sendOperationToMq(arrayList);
+//            int i = 1/0;
+//            System.out.println(i);
             return "success";
         } catch (Exception e) {
-            e.printStackTrace();
             return "fail";
+//            throw new ServiceException(1, "发送mq测试异常");
         }
     }
 }

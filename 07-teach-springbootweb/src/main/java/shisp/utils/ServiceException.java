@@ -1,4 +1,4 @@
-package shisp.rocketmq;
+package shisp.utils;
 
 /**
  * 服务抛出异常给前台。

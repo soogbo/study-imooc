@@ -1,9 +1,10 @@
-package shisp.rocketmq;
+package shisp.utils;
 
+/**
+ * 自定义异常错误码
+ * Created by shisp on 2017年11月24日.
+ */
 public class ErrorCodeException extends RuntimeException{
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
     /**
      * 错误码

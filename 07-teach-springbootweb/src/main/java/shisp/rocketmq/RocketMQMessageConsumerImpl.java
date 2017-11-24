@@ -12,6 +12,10 @@ import org.apache.rocketmq.common.message.MessageExt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import shisp.utils.ConfigureProperties;
+import shisp.utils.ServiceException;
+import shisp.utils.ConfigKey;
+
 /**
  * rocketmq消息客户端
  * @author marshal.liu
@@ -27,6 +31,7 @@ public class RocketMQMessageConsumerImpl implements RocketMQMessageConsumer {
 	//rocketmq消息端
 	private DefaultMQPushConsumer consumer = null;
 	
+	
 	/**
 	 * 启动接收消息
 	 * @param consumerGroup 组名
@@ -40,7 +45,14 @@ public class RocketMQMessageConsumerImpl implements RocketMQMessageConsumer {
 		this.callback = callback;
 		this.isStartup = true;
 		consumer = new DefaultMQPushConsumer(consumerGroup);
+		/*获取配置文件数据两种方式：
+		    1.使用ConfigureProperties读取configure.properties的配置
+		    2.使用@Value("${}")读取application.yml中配置
+		    3.自定义类ReadProperties读取配置文件数据注入
+		    此处 2 3 暂未调通
+		    */
         consumer.setNamesrvAddr(ConfigureProperties.getProperty(ConfigKey.CONSUMER_MQ_IP));
+//        consumer.setNamesrvAddr(readProperties.getConsumerMqIp());
         consumer.setInstanceName(String.valueOf(System.currentTimeMillis()));
         for(String topic:topicList){
         	try {

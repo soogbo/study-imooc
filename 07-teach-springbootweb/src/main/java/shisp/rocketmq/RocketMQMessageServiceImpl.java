@@ -10,6 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import shisp.utils.ConfigKey;
+import shisp.utils.ConfigureProperties;
+import shisp.utils.ServiceException;
+
 /**
  * rocketmq消息服务实现类
  * @author marshal.liu

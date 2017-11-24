@@ -1,4 +1,4 @@
-package shisp.rocketmq.mq.productconsumer;
+package shisp.rocketmq.service;
 
 import java.util.List;
 
@@ -13,13 +13,13 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 
-import shisp.rocketmq.GroupTopicTagEnum;
 import shisp.rocketmq.RocketMQMessageCallback;
 import shisp.rocketmq.RocketMQMessageConsumer;
 import shisp.rocketmq.RocketMQMessageService;
+import shisp.utils.GroupTopicTagEnum;
 
 /**
- * 催记mqConsumer
+ * mqConsumer
  * Created by shisp on 2017年11月7日.
  */
 @Service
@@ -57,7 +57,7 @@ public class SubmitTestMqConsumer {
     
     public void receiveSubmit(String topic, String msg) {
         try {
-            // json String 转对象两种方式：1.String.class对象  2.泛型类等对象
+            // json String 转对象两种方式：1.String.class对象  2.泛型类对象
             // List<Integer> paramBo = JSON.parseObject(msg,new TypeReference<List<Integer>>(){});
             // String paramBo = JSON.parseObject(msg,String.class);
             

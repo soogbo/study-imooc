@@ -1,5 +1,9 @@
-package shisp.rocketmq;
+package shisp.utils;
 
+/**
+ * mq：group topic tag枚举
+ * Created by shisp on 2017年11月24日.
+ */
 public enum GroupTopicTagEnum {
     //测试mq topic。。。
     testMq("test_mq","test_mq","test_mq");

@@ -1,4 +1,4 @@
-package shisp.rocketmq;
+package shisp.utils;
 
 import java.io.InputStreamReader;
 import java.util.Properties;
