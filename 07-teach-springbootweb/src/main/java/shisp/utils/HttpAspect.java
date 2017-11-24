@@ -1,9 +1,11 @@
-package com.imooc.aspect;
+package shisp.utils;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -11,15 +13,19 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by 廖师兄 2017-01-15 12:31
+ * 定义http切面，对HTTP请求切入，进行日志记录
  */
 @Aspect
 @Component
 public class HttpAspect {
 
+	@Autowired
+	private ExceptionHandle exceptionHandle;
+
 	private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class);
 
-	@Pointcut("execution(public * com.imooc.controller.GirlController.*(..))")
+	// 切点，所有http请求的controller
+	@Pointcut("execution(public * shisp.rocketmq.controller.*(..))")
 	public void log() {
 	}
 
@@ -45,9 +51,25 @@ public class HttpAspect {
 		logger.info("args={}", joinPoint.getArgs());
 	}
 
+	@SuppressWarnings("unused")
+	@Around("log()")
+	public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+		ResponseResult<?> result = null;
+		try {
+
+		} catch (Exception e) {
+			return exceptionHandle.handle(e);
+		}
+		if (result == null) {
+			return proceedingJoinPoint.proceed();
+		}
+
+		return result;
+	}
+
 	@After("log()")
 	public void doAfter() {
-		logger.info("222222222222");
+		logger.info("aop doAfter");
 	}
 
 	@AfterReturning(returning = "object", pointcut = "log()")
