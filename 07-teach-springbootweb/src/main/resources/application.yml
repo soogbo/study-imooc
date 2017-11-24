@@ -3,9 +3,9 @@ spring:
     active: dev
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/dbgirl
+    url: jdbc:mysql://101.132.104.23:3306/dbgirl?characterEncoding=UTF-8&amp;noAccessToProcedureBodies=true
     username: root
-    password: 123456
+    password: 502503504
   jpa:
     hibernate:
       ddl-auto: update
