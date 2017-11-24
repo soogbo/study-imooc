@@ -1,9 +1,11 @@
 package com.imooc.service;
 
 import com.imooc.domain.Girl;
-import com.imooc.enums.ResultEnum;
 import com.imooc.exception.GirlException;
 import com.imooc.repository.GirlRepository;
+
+import shisp.utils.ResultEnum;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

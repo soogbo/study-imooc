@@ -1,8 +1,10 @@
 package com.imooc.handle;
 
-import com.imooc.domain.Result;
 import com.imooc.exception.GirlException;
-import com.imooc.utils.ResultUtil;
+
+import shisp.utils.Result;
+import shisp.utils.ResultUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;

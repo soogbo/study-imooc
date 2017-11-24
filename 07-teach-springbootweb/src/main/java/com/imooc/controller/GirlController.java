@@ -1,10 +1,12 @@
 package com.imooc.controller;
 
 import com.imooc.domain.Girl;
-import com.imooc.domain.Result;
 import com.imooc.repository.GirlRepository;
 import com.imooc.service.GirlService;
-import com.imooc.utils.ResultUtil;
+
+import shisp.utils.Result;
+import shisp.utils.ResultUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

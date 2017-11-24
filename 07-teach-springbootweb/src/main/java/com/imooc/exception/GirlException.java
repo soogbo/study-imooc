@@ -1,6 +1,6 @@
 package com.imooc.exception;
 
-import com.imooc.enums.ResultEnum;
+import shisp.utils.ResultEnum;
 
 /**
  * Created by 廖师兄
