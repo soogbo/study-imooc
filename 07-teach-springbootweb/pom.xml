@@ -70,10 +70,8 @@
 		<!-- rocketmq end -->
 
 		<!-- begin test -->
-		<dependency>
-			<groupId>org.freemarker</groupId>
-			<artifactId>freemarker</artifactId>
-		</dependency>
+		<!-- <dependency> <groupId>org.freemarker</groupId> <artifactId>freemarker</artifactId> 
+			</dependency> -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -83,6 +81,13 @@
 			<artifactId>spring-test</artifactId>
 		</dependency>
 		<!-- end test -->
+		
+		<!-- 热部署模块 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
+		</dependency>
 
 
 	</dependencies>

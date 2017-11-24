@@ -3,23 +3,22 @@ package com.imooc.exception;
 import shisp.utils.ResultEnum;
 
 /**
- * Created by 廖师兄
- * 2017-01-21 14:05
+ * Created by 廖师兄 2017-01-21 14:05
  */
-public class GirlException extends RuntimeException{
+public class GirlException extends RuntimeException {
 
-    private Integer code;
+	private Integer code;
 
-    public GirlException(ResultEnum resultEnum) {
-        super(resultEnum.getMsg());
-        this.code = resultEnum.getCode();
-    }
+	public GirlException(ResultEnum resultEnum) {
+		super(resultEnum.getMsg());
+		this.code = resultEnum.getCode();
+	}
 
-    public Integer getCode() {
-        return code;
-    }
+	public Integer getCode() {
+		return code;
+	}
 
-    public void setCode(Integer code) {
-        this.code = code;
-    }
+	public void setCode(Integer code) {
+		this.code = code;
+	}
 }

@@ -3,7 +3,7 @@ package shisp.utils;
 import java.io.Serializable;
 
 /**
- * http请求返回的最外层对象
+ * http请求返回信息包装类
  */
 public class ResponseResult<T> implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -28,6 +28,9 @@ public class ResponseResult<T> implements Serializable {
      */
     private T data = null;
 
+    public ResponseResult() {
+    	super();
+    }
     public ResponseResult(int errorCode, String errorMsg, T data) {
         super();
         this.errorCode = errorCode;
@@ -36,7 +39,7 @@ public class ResponseResult<T> implements Serializable {
     }
 
     /**
-     * 构造静态方法实例
+     * 获取静态方法实例
      */
     public static ResponseResult<Object> newInstance(int errorCode, String errorMsg, Object data) {
         return new ResponseResult<>(errorCode, errorMsg, data);
