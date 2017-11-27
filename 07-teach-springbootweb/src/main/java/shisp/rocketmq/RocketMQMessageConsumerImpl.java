@@ -12,9 +12,9 @@ import org.apache.rocketmq.common.message.MessageExt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import shisp.utils.ConfigureProperties;
-import shisp.utils.ServiceException;
 import shisp.utils.ConfigKey;
+import shisp.utils.ConfigurePropertiesIo;
+import shisp.utils.ServiceException;
 
 /**
  * rocketmq消息客户端
@@ -31,28 +31,33 @@ public class RocketMQMessageConsumerImpl implements RocketMQMessageConsumer {
 	//rocketmq消息端
 	private DefaultMQPushConsumer consumer = null;
 	
-	
+/*	@Value("${consumer.mq.ip}")
+    private String ip; 此处类未被spring管理，只能使用io流读取配置文件或者startup的调用方传递*/
 	/**
 	 * 启动接收消息
 	 * @param consumerGroup 组名
 	 * @param callback 回调接口
 	 */
 	@Override
-	public void startup(String consumerGroup,RocketMQMessageCallback callback) {
+	public void startup(String consumerGroup/*,String consumerMqIp*/,RocketMQMessageCallback callback) {
 		if (this.isStartup) {			
 			return;
 		}
+		/*if (StringUtils.isBlank(consumerMqIp)) {
+		    return;
+        }*/
 		this.callback = callback;
 		this.isStartup = true;
 		consumer = new DefaultMQPushConsumer(consumerGroup);
 		/*获取配置文件数据两种方式：
-		    1.使用ConfigureProperties读取configure.properties的配置
-		    2.使用@Value("${}")读取application.yml中配置
-		    3.自定义类ReadProperties读取配置文件数据注入
-		    此处 2 3 暂未调通
+		    1.使用ConfigurePropertiesIo类 通过io流读取configure.properties的配置
+		    2.使用@Value("${}")读取application.properties中配置 需要自定义类注解@Configuration @PropertySource制定文件路径名
+		    3.自定义类ReadProperties读取配置文件数据注入到对象
+		                如果此类不被水平管理，不能使用23方法
 		    */
-        consumer.setNamesrvAddr(ConfigureProperties.getProperty(ConfigKey.CONSUMER_MQ_IP));
-//        consumer.setNamesrvAddr(readProperties.getConsumerMqIp());
+		//
+        consumer.setNamesrvAddr(ConfigurePropertiesIo.getProperty(ConfigKey.CONSUMER_MQ_IP)); //方式1
+//        consumer.setNamesrvAddr(this.consumerMqIp); //方式2
         consumer.setInstanceName(String.valueOf(System.currentTimeMillis()));
         for(String topic:topicList){
         	try {

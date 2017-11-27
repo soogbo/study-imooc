@@ -25,7 +25,7 @@ public class HttpAspect {
 	private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class);
 
 	// 切点，所有http请求的controller
-	@Pointcut("execution(public * shisp.rocketmq.controller.*(..))")
+	@Pointcut("execution(public * shisp.rocketmq.controller.*.*(..))")
 	public void log() {
 	}
 

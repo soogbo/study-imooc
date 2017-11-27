@@ -8,10 +8,9 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.common.message.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import shisp.utils.ConfigKey;
-import shisp.utils.ConfigureProperties;
 import shisp.utils.ServiceException;
 
 /**
@@ -23,6 +22,9 @@ public class RocketMQMessageServiceImpl implements RocketMQMessageService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(RocketMQMessageServiceImpl.class);
 	private DefaultMQProducer producer;
+	
+	@Value("${consumer.mq.ip}")
+	private String consumerMqIp;
 	
 	/**
 	 * 初始化
@@ -37,7 +39,8 @@ public class RocketMQMessageServiceImpl implements RocketMQMessageService {
          */
         producer = new DefaultMQProducer();
         producer.setProducerGroup("collectionProducer");                
-        producer.setNamesrvAddr(ConfigureProperties.getProperty(ConfigKey.CONSUMER_MQ_IP));
+//        producer.setNamesrvAddr(ConfigurePropertiesIo.getProperty(ConfigKey.CONSUMER_MQ_IP));
+        producer.setNamesrvAddr(consumerMqIp);
         producer.setInstanceName(String.valueOf(System.currentTimeMillis()));
         producer.setVipChannelEnabled(false);
         try {        	

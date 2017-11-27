@@ -14,12 +14,12 @@ import org.springframework.stereotype.Service;
  * 读取configure.properties配置文件
  */
 @Service
-public class ConfigureProperties {
+public class ConfigurePropertiesIo {
 
 	/**
 	 * 日志
 	 */
-	private static final Logger logger = LoggerFactory.getLogger(ConfigureProperties.class);
+	private static final Logger logger = LoggerFactory.getLogger(ConfigurePropertiesIo.class);
 
 	/**
 	 * 配置项
@@ -35,7 +35,7 @@ public class ConfigureProperties {
 	static {
 		try {
 			properties.load(new InputStreamReader(
-					ConfigureProperties.class.getClassLoader().getResourceAsStream(ConfigKey.CONFIG_FILE), "UTF-8"));
+					ConfigurePropertiesIo.class.getClassLoader().getResourceAsStream(ConfigKey.CONFIG_FILE), "UTF-8"));
 		} catch (Exception e) {
 			logger.error("读取配置文件" + ConfigKey.CONFIG_FILE + "失败！");
 		}

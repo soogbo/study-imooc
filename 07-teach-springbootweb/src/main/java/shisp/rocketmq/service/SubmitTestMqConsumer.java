@@ -8,6 +8,7 @@ import javax.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
@@ -27,7 +28,8 @@ public class SubmitTestMqConsumer {
     private static final Logger logger = LoggerFactory.getLogger(SubmitTestMqConsumer.class); 
     @Autowired
     private RocketMQMessageService rocketMQMessageService;
-    
+    /*@Value("${consumer.mq.ip}")
+    private String consumerMqIp;*/
     private RocketMQMessageConsumer rocketMQMessageConsumer;
     
     /**
@@ -36,7 +38,7 @@ public class SubmitTestMqConsumer {
     @PostConstruct
     public void init(){
         rocketMQMessageConsumer = rocketMQMessageService.getMessageConsumer(GroupTopicTagEnum.testMq.getTopic());
-        rocketMQMessageConsumer.startup(GroupTopicTagEnum.testMq.getGroup(), new RocketMQMessageCallback(){
+        rocketMQMessageConsumer.startup(GroupTopicTagEnum.testMq.getGroup()/*,consumerMqIp*/, new RocketMQMessageCallback(){
             @Override
             public void call(String topic, String msg) {
                 receiveSubmit(topic,msg);
